@@ -1,6 +1,6 @@
 class Bot {
-    makeMove(gamestate) {
-        if (gamestate.rounds.length === 0) {
+    makeMove(gameState) {
+        if (gameState.rounds.length === 0) {
             return 'D';
         }
         const p1DynamitesPlayed = gameState.rounds.filter(round => round.p1 === "D").length;
