@@ -7,10 +7,16 @@ class Bot {
         const p2DynamitesPlayed = gameState.rounds.filter(round => round.p2 === "D").length;
         const p2WaterfallsPlayed = gameState.rounds.filter(round => round.p2 === "W").length;
 
+        const probabilityArr = {"P": 0,"S": 0,"R": 0, "D" : 0, "W" :0};
+
+        for (prob in probabilityArr) {
+            probabilityArr[prob] = gameState.rounds.filter(rounds => rounds.p1 === prob).length;
+        }
+
         const lastOppMove = gameState.rounds[gameState.rounds.length-1].p2;
 
         switch(lastOppMove) {
-            /*case "R": return (p1DynamitesPlayed < 100 ?  "D": "P");*/
+            
             case "R": return (p1DynamitesPlayed < 100 ?  "D": "P");
             case "S":
                 return "R";
