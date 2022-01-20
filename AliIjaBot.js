@@ -1,28 +1,26 @@
 class Bot {
-    makeMove(gameState) {
-        if (gameState.rounds.length === 0) {
+    makeMove(gamestate) {
+        if (gamestate.rounds.length === 0) {
             return 'D';
         }
-        const p1DynamitesPlayed = gameState.rounds.filter(round => round.p1 === "D").length;
-        const p2DynamitesPlayed = gameState.rounds.filter(round => round.p2 === "D").length;
-        const p2WaterfallsPlayed = gameState.rounds.filter(round => round.p2 === "W").length;
-
-        const probabilityArr = {"P": 0,"S": 0,"R": 0, "D" : 0, "W" :0};
-
+        const probabilityArr {"P": 0,"S": 0,"R": 0, "D" : 0, "W" :0};
         for (prob in probabilityArr) {
-            probabilityArr[prob] = gameState.rounds.filter(rounds => rounds.p1 === prob).length;
+            probabilityArr[prob] = gameState.rounds.filter(round => round.p1 === prob).length;
         }
+        
+        const p1DynamitesPlayed = gameState.rounds.filter(round => round.p1 === "D").length;
 
         const lastOppMove = gameState.rounds[gameState.rounds.length-1].p2;
 
         switch(lastOppMove) {
-            
-            case "R": return (p1DynamitesPlayed < 100 ?  "D": "P");
+            case "R": 
+                return (p1DynamitesPlayed < 100 ?  "D": "P");
             case "S":
                 return "R";
             case "P":
                 return "S";
-            case "D": return (p2DynamitesPlayed < 100 ?  "W": "P");
+            case "D":
+                return "W";
             case "W":
                 return "R";
         }
